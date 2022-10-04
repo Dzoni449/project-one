@@ -1,0 +1,551 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin:0;
+    padding: 0%;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body{
+    background-color: #f5f5f5;
+}
+section{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.form-container{
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container form{
+    background-color: white;
+    border-radius: 8px;
+    border: 3px solid black;
+    box-shadow: 8px 16px rgba(0,0,0,.1);
+    padding: 16px ;
+    text-align: center;
+    width: 800px;
+}
+
+.form-container form h3{
+    font-size: 20px;
+    color: black;
+    text-transform: uppercase;
+}
+
+.form-container form p{
+    margin: 16px 0;
+    font-size: 32px;
+    color: #777;
+}
+.form-container form p span{
+    color: orange;
+}
+
+.form-container form .box{
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    font-size: 20px;
+    color: black;
+    margin: 16px 0;
+    border: 3px solid black;
+    font-size: 24px ;
+    border-radius: 8px;
+   
+}
+
+.btn,.delete-btn,.option-btn{
+    margin-top: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    color: white;
+    padding: 16px 48px;
+    text-transform: capitalize;
+    width: 100%;
+    background-color: #2980b9;
+    text-align: center;
+}
+
+.btn:hover{
+    background-color: black;
+}
+
+.delete-btn{
+    background-color: red;
+}
+
+.option-btn{
+    background-color: green;
+}
+
+.btn:hover,.delete-btn:hover,.option-btn:hover{
+        background-color: black;
+}
+.flex-btn{
+    display: flex;
+    gap: 16px;
+}
+
+
+.delete-btn1{
+    background-color: red;
+    margin-top: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    padding: 16px 48px;
+    text-transform: capitalize;
+    left: 80%;
+    top: 10%;
+    position: relative;
+    width: 20%;
+    
+    background-color: red;
+    text-align: center;
+}
+
+
+
+.header .flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+}
+.header .flex .logo{
+    font-size: 40px;
+    color: black;
+}
+.header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    z-index: 100;
+}
+
+
+
+
+.header .flex .logo span{
+    color: #2980b9;
+}
+.header .flex  .navbar{
+    margin: 5px 16px;
+    font-size: 38px;
+    color: #777;
+}
+.header .flex  .navbar a:hover{
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.header .flex .icons > *{
+    font-size: 40px;
+    cursor: pointer;
+    color: #777;
+    margin-left: 22px;
+}
+
+.header .flex .icons > *:hover{
+    color: #2980b9;
+}
+.header .flex .profile{
+    position: absolute;
+    top: 125%; 
+    right: 30px;
+    background-color: white;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    border-radius: 8px;
+    border: 3px solid black;
+    padding: 28px;
+    width: 480px;
+    padding-top: 16px;
+    display: none;
+    animation: fadeIn .2s linear;
+}
+
+.header .flex .profile p{
+    margin-bottom: 16px;
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}
+
+
+#meni-btn{
+    display: none;
+
+}
+
+
+.header .flex .profile.active{
+    display: inline-block;
+}
+
+.heading{
+    text-align: center;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    color: black;
+    font-size:45px;
+    font-weight: bolder;
+}
+
+
+
+
+.dashboard .box-container{
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fit,minmax(27rem,1fr));
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.dashboard .box-container .box{
+    text-align: center;
+    background-color: white;
+    border: 3px solid black;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    border-radius: 8px;
+    text-align: center;
+    padding: 16px;
+}
+.dashboard .box-container .box h3{
+    font-size: 40px;
+    color: black;
+}
+.dashboard .box-container .box p{
+    padding: 24px;
+    border-radius: 8px;
+    background-color:  #f5f5f5;
+    font-size: 24px;
+    color: #777;
+    border: 3px solid black;
+    margin: 16px 0;
+}
+
+.dashboard .box-container .box h3 span{
+ font-size: 32px;   
+}
+
+
+.add-products form{
+    margin: 0 auto;
+    max-width: 1,120px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    border: 3px solid black;
+    padding: 16px;
+}
+.add-products form .flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.add-products form .flex .inputbox{
+    flex:1 1 40rem;
+}
+.add-products form .flex .inputbox .box{
+    width: 100%;
+    background-color: #f5f5f5;
+    border: 3px solid black;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: black;
+    border-radius: 8px;
+    margin-top: 1rem 0;
+}
+.add-products form .flex .inputbox span{
+    font-size: 16px;
+    color: #f5f5f5;
+}
+
+.add-products form .flex .inputbox textarea{
+    height: 61px;
+    resize: none;
+}
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55.5%;
+       
+    }
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50.5%;
+       
+    }
+    .flex-btn{
+        flex-flow: column;
+        gap: 0;
+    }
+    .heading{
+        font-size: 30px;
+    }
+    .show-products .box-container{
+        grid-template-columns: 1fr;
+    }
+    .placed-orders .box-container{
+        grid-template-columns: 1fr;
+    }
+}
+
+.empty{
+    border: 3px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    text-transform: capitalize;
+    color:black;
+} 
+
+.show-products .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,528px);
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-products .box-container .box{
+    border: 3px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 12px;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+}
+.show-products .box-container .box img{
+    width: 100%;
+    height: 20rem;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+.show-products .box-container .box .name{
+    font-size: 16px;
+    color: black;
+
+}
+.show-products .box-container .box .cena{
+    font-size: 20px;
+    color: #2980b9;
+    margin: 4px 0;
+}
+
+.show-products .box-container .box .detalji{
+line-height: 2;
+font-size: 14px;
+color: #777;
+}
+
+
+.update-product form{
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    border: 3px solid black;
+    padding: 16px;
+}
+.update-product form .image-container .main-image img{
+    height: 20rem;
+    width: 100%;
+    object-fit: contain;
+
+}
+.update-product form .image-container .sub-image{
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    justify-content: center;
+}
+.update-product form .image-container .sub-image img{
+    height: 112px;
+    width: 128px;
+    object-fit: contain;
+    border: 3px solid black;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: .2s linear;
+}
+.update-product form .image-container .sub-image img:hover{
+    transform: scale(1.1);
+}
+.update-product form .box{
+    width: 100%;
+    background-color: #f5f5f5;
+    border: 3px solid black;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: black;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+.update-product form textarea{
+    height: 224px;
+    resize: none;
+}
+
+.update-product form span{
+    font-size: 1.7rem;
+    color: black;
+}
+
+.placed-orders .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,528px);
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.placed-orders .box-container .box{
+    border: 3px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    
+}
+.placed-orders .box-container .box p{
+    padding: 5px 0;   
+    line-height: 2;
+    font-size: 32px;
+    color: black;
+}
+.placed-orders .box-container .box p span{
+    color: #2980b9;
+}
+.placed-orders .box-container .box  .drop-down{
+    width: 100%;
+    border: 3px solid black;
+    margin: 16px 0;
+    background-color: #f5f5f5;
+    padding: 22.4px;
+    font-size: 32px;
+    color: black;
+    border-radius: 8px;
+}
+.accounts .box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit,36rem);
+   gap: 1rem;
+   justify-content: center;
+   align-items: flex-start;
+}
+.accounts .box-container .box{
+    border: 3px solid black;
+    border-radius: 8px;
+    background-color: white;
+    padding: 12px;
+    box-shadow: 8px 16px rgba(0,0,0,.1); 
+    padding-top: 1rem;
+    text-align: center;
+}
+.accounts .box-container .box p{
+    padding: 5px 0;   
+    line-height: 2;
+    font-size: 32px;
+    color: black;
+
+}
+.accounts .box-container .box p span{
+    color: #2980b9;
+}
+
+.messages .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,36rem);
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+ }
+ .messages .box-container .box{
+     border: 3px solid black;
+     border-radius: 8px;
+     background-color: white;
+     padding: 12px;
+     box-shadow: 8px 16px rgba(0,0,0,.1); 
+     padding-top: 1rem;
+     text-align: center;
+ }
+ .messages .box-container .box p{
+     padding: 5px 0;   
+     line-height: 2;
+     font-size: 32px;
+     color: black;
+ 
+ }
+ .messages .box-container .box p span{
+     color: #2980b9;
+ }
+
+ .car {
+    width: 100%;
+ }
+ 
+ 
+
+@media (max-width  :768px){
+    #menu-btn{
+        display: inline-block;
+    }
+    .header .flex .navbar{
+        position: absolute;
+        top: 99%; left: 0; right: 0;
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+        background-color: white;
+        clip-path:polygon(0 0,100% 0, 100% 0,0 0);
+    }
+    .header .flex .navbar.active{
+        clip-path:polygon(0 0,100% 0, 100% 100%,0 100%);
+    }
+    .header .flex .navbar a{
+        display: block;
+        margin: 32px;
+    }
+}
+
+
+@keyframes fadeIn{
+    0%{
+        transform: translateY(16px);
+    }
+}
+.flex .navbar1 a{
+    padding: 16px;
+}

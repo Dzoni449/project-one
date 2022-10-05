@@ -17,8 +17,8 @@
             <img src="slike/jedan.jpg" alt="slika">
             <div class="desni">
                 <h1>Projects</h1>
-                <a href="#">Portfolio</a>
-                <a href="#">Prodavnica</a>
+                <a href="https://github.com/Dzoni449/project-one/tree/main/portfolio">Portfolio</a>
+                <a href="https://github.com/Dzoni449/project-one/tree/main/prodavnica">Prodavnica</a>
                 <a href="#">Eko</a>
             </div>
         </div>

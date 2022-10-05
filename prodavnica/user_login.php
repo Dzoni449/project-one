@@ -86,7 +86,11 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         <input type="text" name="username" required placeholder="enter your username" class="box"><span>*<?php echo $usernameError?></span>
         <input type="password" name="password" required placeholder="enter your password" class="box"><span>*<?php echo $passError?>
         <input type="submit"  value="login" name="submit" class="btn">
+        <p>
+            Dont have an account? <a href="user_register.php" class="option-btn">Register!</a>
+        </p>
        <p> Continue as <a href="homeg.php">"guest"</a></p>
+        
     </form>
 </section>
 

@@ -5,12 +5,12 @@ require_once "../connect/connection.php";
 require_once "../admin/admin_header.php";
 
 
-if(!empty($_GET['deleteCategory'])){
+if(!empty($_GET['deleteCategory'])) {
     $deleteCategory=$_GET['deleteCategory'];
 
-    $sql="DELETE FROM `categories` WHERE `category_id`='$deleteCategory';";
-    $result=$conn->query($sql);
-    $mess="Deleted category!";
+    $DeleteCategory="DELETE FROM `categories` WHERE `category_id`='$deleteCategory';";
+    $result=$conn->query($DeleteCategory);
+    $message="Deleted category!";
 }
 
 ?>
@@ -41,10 +41,10 @@ if(!empty($_GET['deleteCategory'])){
         
         <?php
 
-        $q="SELECT * FROM `categories`;";
-        $result=$conn->query($q);
+        $SelectCategories="SELECT * FROM `categories`;";
+        $result=$conn->query($SelectCategories);
 
-        foreach($result as $row){
+        foreach($result as $row) {
 
         ?>
         <tr>

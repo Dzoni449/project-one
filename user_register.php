@@ -1,65 +1,59 @@
 <?php
-
-
 require_once "connect/connection.php";
-
 require_once "validation/validation.php";
 
 $val=true;
-$emailErr=$passERR=$first_nameERR=$last_nameERR=$retypepasswordERR=$ERROR="*";
+$emailErr="*";
+$passERR="*";
+$first_nameERR="*";
+$last_nameERR="*";
+$retypepasswordERR="*";
+$existsError="*";
 
+if($_SERVER['REQUEST_METHOD']=="POST") {
 
-if($_SERVER['REQUEST_METHOD']=="POST"){
     $email=$_POST['email'];
     $password=$_POST['password'];
     $first_name=$_POST['first_name'];
     $last_name=$_POST['last_name'];
     
-    
-   if(emailValidation($email,$conn)){
+   if(emailValidation($email,$conn)) {
     $emailErr=emailValidation($email,$conn);
     $val=false;
    }
-   if(passwordValidation($password)){
+
+   if(passwordValidation($password)) {
     $passERR=passwordValidation($password);
     $val=false;
-   }else{
-    $password=md5($password);
+   } else {
+    $password=sha1($password);
    }
    
-
-   if(textValidation($last_name)){
+   if(textValidation($last_name)) {
     $last_nameERR=textValidation($last_name);
     $val=false;
    }
-   if(textValidation($first_name)){
+   
+   if(textValidation($first_name)) {
     $first_nameERR=textValidation($first_name);
     $val=false;
    }
 
-   if($val){
-        $q="SELECT * FROM `users` WHERE `email` = '$email'";
-        $result=$conn->query($q);
+   if($val) {
+        $selectUserEmail="SELECT * FROM `users` WHERE `email` = '$email'";
+        $result=$conn->query($selectUserEmail);
         $row=$result->fetch_assoc();
-
-       
-
-        if($result->num_rows>0){
-            $ERROR="Email is already registered!";
-        }else{
-            $sql="INSERT INTO `users`( `email`, `password`, `first_name`, `last_name`, `role`) 
-            VALUES ('$email','$password','$first_name','$last_name',0) ;";
-            $res=$conn->query($sql);
-
-            $ERROR="Successfull!";
+        if($result->num_rows>0) {
+            $existsError="Email is already registered!";
+        } else {
+            $insertUser="INSERT INTO `users`( `email`, `password`, `first_name`, `last_name`, `role`) 
+            VALUES ('$email','$password','$first_name','$last_name','user') ;";
+            $res=$conn->query($insertUser);
+            $existsError="Successfull!";
         }
    }
 }
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +81,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 
                 <br>
                 <input type="submit" value="  Register  " class="btn">
-                <p><?php echo $ERROR;?></p>
+                <p><?php echo $existsError;?></p>
                 <p>
             Already have an account? <a href="login.php" class="option-btn">Login!</a>
                 </p>

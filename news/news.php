@@ -5,18 +5,12 @@ require_once "../connect/connection.php";
 require_once "../admin/admin_header.php";
 
 
-if(!empty($_GET['deleteNews'])){
+if(!empty($_GET['deleteNews'])) {
     $delete_id=$_GET['deleteNews'];
-
-    $sql="DELETE FROM `news_tags` WHERE `news_id` = $delete_id;";
-    
-
-    
-    $result=$conn->query($sql);
-
-    $sql1="DELETE FROM `news` WHERE `news_id` = $delete_id;";
-    $result1=$conn->query($sql1);
-    
+    $deleteFromNewsTags="DELETE FROM `news_tags` WHERE `news_id` = $delete_id;";
+    $result=$conn->query($deleteFromNewsTags);
+    $deleteFromNews="DELETE FROM `news` WHERE `news_id` = $delete_id;";
+    $result1=$conn->query($deleteFromNews);    
 }
 ?>
 
@@ -50,12 +44,9 @@ if(!empty($_GET['deleteNews'])){
         </tr>
         
         <?php
-
-        $q="SELECT * FROM `news`;";
-        $result=$conn->query($q);
-
-        foreach($result as $row){
-
+        $SelectNews="SELECT * FROM `news`;";
+        $result=$conn->query($SelectNews);
+        foreach($result as $row) {
         ?>
         <tr>
             <td><?php echo $row['news_id'];?></td>

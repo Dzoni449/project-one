@@ -1,15 +1,6 @@
 <?php
 
 require_once "connect/connection.php";
-
-
-
-session_start();
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>

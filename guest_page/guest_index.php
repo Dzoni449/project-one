@@ -10,29 +10,10 @@ require_once "guest_header.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News</title>
+    <title>Guest index</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    
-
-
-        
-       
-      
-        
-
-   
-
-   
-
-  
-
-
-
-
-
     <section class="products">
 
         <h1 class="heading">News</h1>
@@ -40,22 +21,19 @@ require_once "guest_header.php";
             <div class="box-container">
 
             <?php
-                $q="SELECT * FROM `news`";
-                $result=$conn->query($q);
+                $selectNews="SELECT * FROM `news`";
+                $result=$conn->query($selectNews);
 
-                foreach($result as $row){
-   
-   
-
+                foreach($result as $row) {
             ?>
                 <form action="" method="post" class="box">
                     <p class="big"><?php echo $row['title'];?></p>
                     <div class="center"><?php echo $row['news_text'];?></div>
                 <?php
                 $car=$row['category_id'];
-                $sql="SELECT * FROM `categories` WHERE `category_id` = $car;";
-                $result3=$conn->query($sql);
-                foreach($result3 as $car){
+                $selectCategories="SELECT * FROM `categories` WHERE `category_id` = $car;";
+                $result3=$conn->query($selectCategories);
+                foreach($result3 as $car) {
 
 
                 ?>
@@ -71,8 +49,8 @@ require_once "guest_header.php";
 
                 ?>
 
-</div>
+            </div>
 
 </section>
-                </body>
+</body>
 </html>

@@ -1,28 +1,24 @@
 <?php
 require_once "../connect/connection.php";
-
 require_once "../admin/admin_header.php";
 
 $val=true;
-$nameERR=$success="";
-if($_SERVER['REQUEST_METHOD']=="POST"){
+$nameError="";
+$success="";
+
+if($_SERVER['REQUEST_METHOD']=="POST") {
     $name=$_POST['name'];
-   $tag_id=$_POST['tag'];
+    $tag_id=$_POST['tag'];
    
     if(empty($name)){
         $val=false;
-        $nameERR="Enter new name!";
+        $nameError="Enter new name!";
     }
-
-    if($val){
-       
-
-      
-            $q="UPDATE `tags` 
-            SET `name`='$name' WHERE `tag_id` = '$tag_id';" ;
-            $result=$conn->query($q);
-
-            $success="Succesfully changed name!";
+    if($val){      
+        $UpdateTags="UPDATE `tags` 
+        SET `name`='$name' WHERE `tag_id` = '$tag_id';" ;
+        $result=$conn->query($UpdateTags);
+        $success="Succesfully changed name!";
     }
 }
 
@@ -50,11 +46,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
                 <?php
                     $update_tags=$_GET['update'];
-                     $q="SELECT * FROM `tags` WHERE `tag_id` = '$update_tags';";
-                     $result=$conn->query($q);
+                    $selectTags="SELECT * FROM `tags` WHERE `tag_id` = '$update_tags';";
+                    $result=$conn->query($selectTags);
              
-                     foreach($result as $row){
-             
+                    foreach($result as $row) {             
                 ?>
                 <input type="hidden" name="tag" value="<?php echo $row['tag_id'];?>">
                 
@@ -66,10 +61,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 <p><?php echo $success;?></p>
                
             </form>
-            <?php
-             }
+                <?php
+                    }
     
-        ?>
+                ?>
         </div>
     </div>
 </body>

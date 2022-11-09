@@ -8,145 +8,92 @@ require '../sendgrid/vendor/autoload.php';
 require_once "../sendgrid/config.php";
 
 $val=true;
-$tError="";
-
-
+$titleError="";
 $message='';
 
-
-
-
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $tags=$_POST['tag'];
+if($_SERVER["REQUEST_METHOD"]=="POST") {
     $title=$_POST['title'];
     $text=$_POST['textarea'];
     $cat_id=$_POST['category'];
     
+    if($val) {
 
-    if($val){
-
-        $sql="SELECT * FROM `news` WHERE `title` = '$title'";
-        $result1=$conn->query($sql);
+        $selectNews="SELECT * FROM `news` WHERE `title` = '$title'";
+        $result1=$conn->query($selectNews);
         if($result1->num_rows){
-            $tError="That title already exists!";
+            $titleError="That title already exists!";
         }else{
-            $q="INSERT INTO `news`( `title`, `news_text`, `category_id`, `created_at`,`updated_at`) 
+            $InsertIntoNews="INSERT INTO `news`( `title`, `news_text`, `category_id`, `created_at`,`updated_at`) 
             VALUES ('$title','$text','$cat_id',NOW(),NOW());";
     
-            $result=$conn->query($q);
-
-            
-    
+            $result=$conn->query($InsertIntoNews);
             $message="Succesfully added news!";
-
-
-          
-
-            
-
-                     }
+         }
         
-        if(isset($_POST['submit'])){
-            if(!empty($_POST['tag'])){
-                foreach($_POST['tag'] as $language){
-                    $sql="SELECT * FROM `news` WHERE `title` = '$title';";
-                    $result1=$conn->query($sql);
-                    $row=$result1->fetch_assoc();
-                    $id=$row['news_id'];
 
-                    $sql2="INSERT INTO `news_tags`( `news_id`, `tag_id`) 
-                    VALUES ('$id','$language'); ";
-                    $result3=$conn->query($sql2);
+if(isset($_POST['submit'])) {
+    if(!empty($_POST['tag'])) {
+        foreach($_POST['tag'] as $language){
+            $selectFromNews="SELECT * FROM `news` WHERE `title` = '$title';";
+            $result1=$conn->query($selectFromNews);
+            $row=$result1->fetch_assoc();
+            $id=$row['news_id'];
 
-                }
+            $InsertIntoNewsTags="INSERT INTO `news_tags`( `news_id`, `tag_id`) 
+            VALUES ('$id','$language'); ";
+            $result3=$conn->query($InsertIntoNewsTags); 
+            }
             }else{
-                //
-            }
-
-            
-            
+            }   
         }
 
-        if(isset($_POST['submit'])){
-            $cat_id=$_POST['category'];
-            $sql="SELECT `name` FROM `categories` WHERE `category_id` = '$cat_id'; ";
-            $result1=$conn->query($sql);
+if(isset($_POST['submit'])) {
+    $cat_id=$_POST['category'];
+    $SelectName="SELECT `name` FROM `categories` WHERE `category_id` = '$cat_id'; ";
+    $result1=$conn->query($SelectName);
+   
+    foreach($result1 as $row) {
+    $categoryname= $row['name'];
 
-           
-            
-            foreach($result1 as $row){
-                $catname= $row['name'];
+    $SelectUserId="SELECT `user_id` FROM `users_subscribed_categories` WHERE `category_id` = '$cat_id';";
+    $result2=$conn->query($SelectUserId);
+    $row=$result2->fetch_assoc();
 
-                $sql1="SELECT `user_id` FROM `users_subscribed_categories` WHERE `category_id` = '$cat_id';";
-                $result2=$conn->query($sql1);
-                $row=$result2->fetch_assoc();
-                foreach($result2 as $row1){
-                    $id= $row1['user_id'];
+    foreach($result2 as $row1) {
+    $id= $row1['user_id'];
+    $SelectEmail="SELECT `email` FROM `users` WHERE `user_id` = '$id';";
+    $result3=$conn->query($SelectEmail);
+    $row1=$result3->fetch_assoc();
 
-                $sql2="SELECT `email` FROM `users` WHERE `user_id` = '$id';";
-                $result3=$conn->query($sql2);
-                $row1=$result3->fetch_assoc();
-                foreach($result3 as $r){
-                    $email1= $row1['email'];
-
-                    $api="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";
-                    $email = new \SendGrid\Mail\Mail(); 
-                    $email->setFrom("nikolastevanovic449@gmail.com", "Nikola");
-                    $email->setSubject("News");
-                    $email->addTo($email1,"Nikola");
-                    $email->addContent("text/plain", "Poštovani,
+    foreach($result3 as $r) {
+    $email1= $row1['email'];
+    $api="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";
+    $email = new \SendGrid\Mail\Mail(); 
+    $email->setFrom("nikolastevanovic449@gmail.com", "Nikola");
+    $email->setSubject("News");
+    $email->addTo($email1,"Nikola");
+    $email->addContent("text/plain", "Poštovani,
     
-                    Objavili smo vest kategorije `$catname` kojoj ste se pretplatili.
+        Objavili smo vest kategorije `$categoryname` kojoj ste se pretplatili.
     
-                    Vest mozete pročitati na sledećem linku  http://localhost/news/user_index.php
+        Vest mozete pročitati na sledećem linku  http://localhost/news/user_index.php
     
-                    S poštovanjem,
+        S poštovanjem,
     
-                    Redakcija");
+        Redakcija");
     
-                    $sendgrid = new \SendGrid($api);
-                    try {
-                     $response = $sendgrid->send($email);
-                     //print $response->statusCode() . "\n";
-                    //print_r($response->headers());
-                    //print $response->body() . "\n";
-                    } catch (Exception $e) {
-                     //echo 'Caught exception: '. $e->getMessage() ."\n";
-                    }   
-                }
-    
-                        
-                    
-                    
-                }
-                
-                
-                
-
-               
-
-                
-            
-
-           
-           
-           
-           
-
-
-            }    
-           
-                }
-                
-            }
-
-            
+    $sendgrid = new \SendGrid($api);
+    try {
+        $response = $sendgrid->send($email);
+    } catch (Exception $e) {
+      
+     }   
+}
+    }
+                }    
         }
-           
-       
-        
-    
-
+                }
+            }
 ?>
 
 <!DOCTYPE html>
@@ -181,34 +128,28 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <h2>Categories</h2>: 
                 <select name="category" id="subject">
                     <?php 
-                        $q="SELECT * FROM `categories`;";
-                        $result=$conn->query($q);
-                        foreach($result as $row){
+                        $selectCategory="SELECT * FROM `categories`;";
+                        $result=$conn->query($selectCategory);
+                        foreach($result as $row) {
                     ?>
                 <option value="<?php echo $row['category_id'];?>"><?php echo $row['name'];?></option>
-                
-                
-                <?php
+                    <?php
                         }
-                ?>
+                    ?>
                 </select>
                 <h2>Select Tags</h2>
                 <?php
-                    $q="SELECT * FROM `tags`;";
-                    $result=$conn->query($q);
-                    foreach($result as $row){
+                    $selectTags="SELECT * FROM `tags`;";
+                    $result=$conn->query($selectTags);
+                    foreach($result as $row) {
                 ?>
-                
                 <label class="checkbox" >
-
                 <input type="checkbox" name="tag[]" multiple value="<?php echo $row['tag_id'];?>"><?php echo $row['name'];?>
                 </label>
                 <?php
                     }
                 ?>
-                
                 <input type="submit" name="submit" value="Add News" class="btn">
-                
                 <p><?php echo $message;?></p>
                 <p><?php echo $tError;?></p>
             </form>

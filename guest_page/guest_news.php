@@ -10,7 +10,7 @@ require_once "guest_header.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Guest News</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,22 +22,20 @@ require_once "guest_header.php";
 
     <?php
         $get_id=$_GET['View'];
-        $q="SELECT * FROM `news` WHERE `news_id` = '$get_id';";
-        $result=$conn->query($q);
+        $selectNews="SELECT * FROM `news` WHERE `news_id` = '$get_id';";
+        $result=$conn->query($selectNews);
 
-        foreach($result as $row){
-
-
-
+        foreach($result as $row) {
     ?>
         <form action="" method="post" class="box">
-            <p class="big"><?php echo $row['title'];?></p>
-            
+            <p class="big"><?php echo $row['title'];?></p>            
         <?php
+
         $car=$row['category_id'];
-        $sql="SELECT * FROM `categories` WHERE `category_id` = $car;";
-        $result3=$conn->query($sql);
-        foreach($result3 as $car){
+        $selectCategories="SELECT * FROM `categories` WHERE `category_id` = $car;";
+        $result3=$conn->query($selectCategories);
+
+        foreach($result3 as $car) {
 
 
         ?>
@@ -50,20 +48,16 @@ require_once "guest_header.php";
          <?php 
          $notags="";
          $get_id=$_GET['View'];
-         $sql2="SELECT * FROM `news_tags` WHERE `news_id` = '$get_id';";
-         $result4=$conn->query($sql2);
+         $SelectNewsTags="SELECT * FROM `news_tags` WHERE `news_id` = '$get_id';";
+         $result4=$conn->query($SelectNewsTags);
         
-        
-           foreach($result4 as $r){
+        foreach($result4 as $r) {
             if($r){
-                $id=$r['tag_id'];
-                $sql5="SELECT * FROM `tags` WHERE `tag_id` ='$id'";
-                $result5=$conn->query($sql5);
-                
-                foreach($result5 as $red){
-                    
-                    
-                    
+            $id=$r['tag_id'];
+            $SelectTagsid="SELECT * FROM `tags` WHERE `tag_id` ='$id'";
+            $result5=$conn->query($SelectTagsid);
+             
+            foreach($result5 as $red){                    
          ?>
          
         <p id="left1">#<?php echo $red['name'];?>,</p>    

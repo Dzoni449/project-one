@@ -9,23 +9,23 @@ $nameErr="";
 $message="";
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
-    $name=$_POST['name'];
+        $name=$_POST['name'];
 
-    if(empty($name)){
+    if(empty($name)) {
         $val=false;
         $nameErr="Enter Category name!";
     }
 
-    if($val){
-        $q="SELECT * FROM `categories` WHERE `name` =  '$name'";
-        $res=$conn->query($q);
-        if($res->num_rows){
+    if($val) {
+        $selectCategory="SELECT * FROM `categories` WHERE `name` =  '$name'";
+        $result=$conn->query($selectCategory);
+        if($result->num_rows) {
             $message="That category already exists";
-        }else{   
-       $q="INSERT INTO `categories`(`name`) 
-        VALUES ('$name');";
-        $result=$conn->query($q);
-        $message="Succesfully added category!";
+        } else {   
+            $q="INSERT INTO `categories`(`name`) 
+            VALUES ('$name');";
+            $result2=$conn->query($q);
+            $message="Succesfully added category!";
     }
 }
 }
@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add</title>
+    <title>Add Categories</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>

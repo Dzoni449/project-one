@@ -4,25 +4,24 @@ require_once "../connect/connection.php";
 require_once "../admin/admin_header.php";
 
 $val=true;
-$nameERR=$success="";
-if($_SERVER['REQUEST_METHOD']=="POST"){
-    $name=$_POST['name'];
-   $category_id=$_POST['category'];
+$nameERR="";
+$success="";
+
+if($_SERVER['REQUEST_METHOD']=="POST") {
+        $name=$_POST['name'];
+        $category_id=$_POST['category'];
    
-    if(empty($name)){
+    if(empty($name)) {
         $val=false;
         $nameERR="Enter new name!";
     }
 
-    if($val){
-       
+    if($val) {
+        $UpdateCategories="UPDATE `categories` 
+        SET `name`='$name' WHERE `category_id` = '$category_id';" ;
+        $result=$conn->query($UpdateCategories);
 
-      
-            $q="UPDATE `categories` 
-            SET `name`='$name' WHERE `category_id` = '$category_id';" ;
-            $result=$conn->query($q);
-
-            $success="Succesfully changed name!";
+        $success="Succesfully changed name!";
     }
 }
 
@@ -50,10 +49,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
                 <?php
                     $update_category=$_GET['update'];
-                     $q="SELECT * FROM `categories` WHERE `category_id` = '$update_category';";
-                     $result=$conn->query($q);
+                    $SelectCategories="SELECT * FROM `categories` WHERE `category_id` = '$update_category';";
+                    $result=$conn->query($SelectCategories);
              
-                     foreach($result as $row){
+                    foreach($result as $row) {
              
                 ?>
                 <input type="hidden" name="category" value="<?php echo $row['category_id'];?>">

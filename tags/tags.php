@@ -1,14 +1,11 @@
 <?php
 require_once "../connect/connection.php";
-
 require_once "../admin/admin_header.php";
 
-
-if(!empty($_GET['deleteTags'])){
+if(!empty($_GET['deleteTags'])) {
     $tag_Id=$_GET['deleteTags'];
-
-    $q="DELETE FROM `tags` WHERE `tag_id` = '$tag_Id';";
-    $result=$conn->query($q);
+    $deleteTag="DELETE FROM `tags` WHERE `tag_id` = '$tag_Id';";
+    $result=$conn->query($deleteTag);
 }
 ?>
 
@@ -37,12 +34,10 @@ if(!empty($_GET['deleteTags'])){
         </tr>
         
         <?php
+        $selectTags="SELECT * FROM `tags`;";
+        $result=$conn->query($selectTags);
 
-        $q="SELECT * FROM `tags`;";
-        $result=$conn->query($q);
-
-        foreach($result as $row){
-
+        foreach($result as $row) {
         ?>
         <tr>
             <td><?php echo $row['tag_id']?></td>

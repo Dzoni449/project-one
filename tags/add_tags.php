@@ -1,30 +1,29 @@
 <?php
 require_once "../connect/connection.php";
-
 require_once "../admin/admin_header.php";
 
 $val=true;
-$nameErr="";
+$TagNameError="";
 $message="";
 
-if($_SERVER['REQUEST_METHOD']=="POST"){
+if($_SERVER['REQUEST_METHOD']=="POST") {
     $name=$_POST['name'];
-
-    if(empty($name)){
+    if(empty($name)) {
         $val=false;
-        $nameErr="Enter Tag name!";
+        $TagNameError="Enter Tag name!";
     }
 
-    if($val){
-        $q="SELECT * FROM `tags` WHERE `name` =  '$name'";
-        $res=$conn->query($q);
-        if($res->num_rows){
+    if($val) {
+        $selectTags="SELECT * FROM `tags` WHERE `name` =  '$name'";
+        $res=$conn->query($selectTags);
+
+        if($res->num_rows) {
             $message="That tag already exists";
-        }else{
-        $q="INSERT INTO `tags`(`name`) 
+        } else {
+        $InsertTag="INSERT INTO `tags`(`name`) 
         VALUES ('$name');";
-        $result=$conn->query($q);
-        $message="Succesfully added category!";
+        $result=$conn->query($InsertTag);
+        $message="Succesfully added tag!";
         }
     }
 }
@@ -36,7 +35,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Document</title>
+    <title>add tags</title>
 </head>
 <body>
     

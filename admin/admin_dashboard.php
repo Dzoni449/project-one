@@ -2,6 +2,15 @@
 
 require_once "admin_header.php";
 
+session_start();
+
+
+if(!isset($_SESSION['id'])) {
+   header('Location:../login.php');
+}
+$admin_id=$_SESSION['id'];
+
+
 ?>
 
 <!DOCTYPE html>

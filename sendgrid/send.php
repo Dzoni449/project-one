@@ -2,7 +2,7 @@
 <?php
 require 'vendor/autoload.php'; 
 
-$api="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";
+$api="Enter API KEY";
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("nikolastevanovic449@gmail.com", "Nikola");
 $email->setSubject("News");
